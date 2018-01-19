@@ -8,10 +8,10 @@ const EventEmitter = require("events").EventEmitter;
 
 let Data = {timer: null, enemies: [], player: {}};
 
-Data.player = {
-    x: 50,
-    y: 10,
-};
+// Data.player = {
+//     x: 50,
+//     y: 10,
+// };
 
 class Store extends EventEmitter{
 
@@ -35,10 +35,17 @@ class Store extends EventEmitter{
         p.x += dx;
         p.y += dy;
 
-        console.log(p.x);
+        console.log(p);
 
         Data.player = p;
 
+    }
+
+    start(){
+        Data.player = {
+            x: 50,
+            y: 10,
+        };
     }
 
     addChangeListener(callback) {
@@ -56,11 +63,13 @@ class Store extends EventEmitter{
 
 }
 
-
 Dispatcher.register(function (action) {
     switch (action.actionType){
         case "pmove" :
-           store.movePlay(action.dx, action.dy)
+            store.movePlay(action.dx, action.dy)
+            break;
+        case "start":
+            store.start();
             break;
         default:
     }

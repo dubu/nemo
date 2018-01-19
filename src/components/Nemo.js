@@ -1,21 +1,21 @@
 import React, {Component} from "react";
 import Store from "../Store";
 import Player from "./Player";
-import Dispatcher from "../Dispatcher";
+import Actions from "../Actions";
 
-function player_key_move(dx, dy) {
-    Dispatcher.dispatch({
-        actionType: "pmove",
-        dx: dx,
-        dy: dy,
-    });
-}
+// function player_key_move(dx, dy) {
+//     Dispatcher.dispatch({
+//         actionType: "pmove",
+//         dx: dx,
+//         dy: dy,
+//     });
+// }
 
 class Nemo extends  Component{
 
     constructor(){
         super();
-        this.stage= Store.getState();
+        this.state= Store.getState();
     }
 
     componentDidMount(){
@@ -33,14 +33,22 @@ class Nemo extends  Component{
 
 
     render(){
+        Actions.start_game();
         return (
             <svg width={1000} height={100}>
-                <Player {...this.stage.player} />
+                <Player {...this.state.player} />
 
             </svg>
 
         ) ;
     }
+
+    // start_game = ()=>{
+    //     Action.start();
+    //     Dispatcher.dispatch({
+    //         actionType: "start",
+    //     });
+    // }
 
     keydown(event) {
         let key = event.key;
@@ -48,10 +56,10 @@ class Nemo extends  Component{
 
         switch (key){
             case "ArrowRight":
-                player_key_move(30, 0);
+                Actions.player_key_move(30, 0);
                 break;
             case "ArrowLeft":
-                player_key_move(-30, 0);
+                Actions.player_key_move(-30, 0);
                 break;
             default:
         }

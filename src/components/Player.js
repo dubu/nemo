@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class Player extends Component {
 
     render(){
-        console.log(this.props.x );
+        // console.log("x "+this.props.x );
         let position = "translate(" + this.props.x + ", " + this.props.y + ")";
         return(
             <g transform={position}  ref="player">
