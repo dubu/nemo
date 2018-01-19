@@ -19,14 +19,23 @@ class Nemo extends  Component{
     }
 
     componentDidMount(){
+        Store.addChangeListener(this._onChange);
         window.addEventListener("keydown",this.keydown)
     }
+
+    componentWillUnmount() {
+        Store.removeChangeListener(this._onChange);
+    }
+
+    _onChange = () => {
+        this.setState(Store.getState());
+    };
 
 
     render(){
         return (
-            <svg width={100} height={100}>
-                <Player />
+            <svg width={1000} height={100}>
+                <Player {...this.stage.player} />
 
             </svg>
 
