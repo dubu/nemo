@@ -5,15 +5,18 @@
 
 const EventEmitter = require("events").EventEmitter;
 
+let Data = {timer: null, enemies: [], player: {}};
+
 class Store extends EventEmitter{
 
     constructor(){
         super();
-
     }
 
     getState() {
+
         return {
+            timer: Data.timer,
             enemies: Data.enemies,
             player: Data.player
         }
@@ -21,8 +24,6 @@ class Store extends EventEmitter{
 
 }
 
-
-
-
 let store = new Store();
+
 export default store
