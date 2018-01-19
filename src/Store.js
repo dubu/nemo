@@ -3,7 +3,7 @@
 //
 // };
 
-import Dispatcher from "./Dispacher";
+import Dispatcher from "./Dispatcher";
 const EventEmitter = require("events").EventEmitter;
 
 let Data = {timer: null, enemies: [], player: {}};
@@ -29,6 +29,8 @@ class Store extends EventEmitter{
         p.x += dx;
         p.y += dy;
 
+        console.log(p);
+
         Data.player = p;
 
     }
@@ -38,6 +40,7 @@ class Store extends EventEmitter{
 Dispatcher.register(function (action) {
     switch (action.actionType){
         case "pmove" :
+
            store.movePlay(action.dx, action.dy)
             break;
         default:
