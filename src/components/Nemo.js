@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import Store from "../Store"
+import Store from "../Store";
+import Player from "./Player";
 
 class Nemo extends  Component{
 
@@ -9,9 +10,14 @@ class Nemo extends  Component{
 
     }
 
+
     render(){
         return (
-           <div> hi in div ~ {this.props.width}  {this.props.height} </div>
+            <svg width={100} height={100}>
+                <Player />
+
+            </svg>
+
         ) ;
     }
 }
