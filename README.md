@@ -1,5 +1,10 @@
-npm install -g create-react-app
 
+##setting
+install node ,npm
+npm install -g create-react-app
 create-react-app my-app
 cd my-app/
 npm start
+
+
+## hello
