@@ -15,6 +15,7 @@ class Nemo extends  Component{
 
     constructor(){
         super();
+        Actions.start_game();
         this.state= Store.getState();
     }
 
@@ -25,15 +26,17 @@ class Nemo extends  Component{
 
     componentWillUnmount() {
         Store.removeChangeListener(this._onChange);
+        Store.removeChangeListener(this.keydown);
     }
 
     _onChange = () => {
+        console.log("chage")
         this.setState(Store.getState());
     };
 
 
     render(){
-        Actions.start_game();
+        console.log(this.state.player)
         return (
             <svg width={1000} height={100}>
                 <Player {...this.state.player} />
@@ -60,6 +63,9 @@ class Nemo extends  Component{
                 break;
             case "ArrowLeft":
                 Actions.player_key_move(-30, 0);
+                break;
+            case "ArrowDown":
+                Actions.start_game();
                 break;
             default:
         }

@@ -49,7 +49,7 @@ class Store extends EventEmitter{
     }
 
     addChangeListener(callback) {
-        this.on("chage", callback);
+        this.on("change", callback);
     }
 
     removeChangeListener(callback) {
@@ -67,9 +67,11 @@ Dispatcher.register(function (action) {
     switch (action.actionType){
         case "pmove" :
             store.movePlay(action.dx, action.dy)
+            store.emitChange();
             break;
         case "start":
             store.start();
+            store.emitChange();
             break;
         default:
     }
